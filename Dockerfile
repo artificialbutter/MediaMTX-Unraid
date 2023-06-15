@@ -1,6 +1,7 @@
 FROM alpine:3
 
 RUN apk --no-cache add curl
+RUN apk --no-cache add ffmpeg
 
 WORKDIR /app
 RUN mkdir /app/config/
