@@ -31,4 +31,5 @@ fi
 echo "Starting..."
 echo "=============================="
 
+chmod +x mediamtx
 ./mediamtx
