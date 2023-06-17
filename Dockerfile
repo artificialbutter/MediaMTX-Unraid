@@ -6,7 +6,7 @@ RUN apk --no-cache add ffmpeg
 WORKDIR /app
 RUN mkdir /app/config/
 
-ADD ./mediamtx /app
+ADD ./bin/mediamtx /app
 ADD ./start.sh /app
 
 CMD sh start.sh

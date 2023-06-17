@@ -7,7 +7,7 @@ url="https://raw.githubusercontent.com/bluenviron/mediamtx/v0.23.5/mediamtx.yml"
 
 echo " __  __          _ _       __  __ _______  __"
 echo "|  \/  | ___  __| (_) __ _|  \/  |_   _\ \/ /"
-echo "| |\/| |/ _ \/ _` | |/ _` | |\/| | | |  \  / "
+echo "| |\/| |/ _ \/ _\` | |/ _\` | |\/| | | |  \  / "
 echo "| |  | |  __/ (_| | | (_| | |  | | | |  /  \ "
 echo "|_|  |_|\___|\__,_|_|\__,_|_|  |_| |_| /_/\_\\"
 
@@ -31,4 +31,5 @@ fi
 echo "Starting..."
 echo "=============================="
 
+chmod +x mediamtx
 ./mediamtx
