@@ -10,7 +10,7 @@ I'm new to docker, so there's probably a way to do this with the official image 
 - `ffmpeg` - MediaMTX, with ffmpeg
 
 ## Updating
-In the event that I stop maintaining this image, you can update it yourself by following these steps:
+In the event that I stop maintaining this image, anyone can update it by following these steps:
 1. Download the latest version of MediaMTX for linux (amd64) from [here](https://github.com/bluenviron/mediamtx/releases) and extract it.
 2. Copy the `mediamtx` binary to the `bin` folder in this repo.
 3. Update the url in start.sh to use the new version number.
