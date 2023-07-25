@@ -2,7 +2,7 @@
 
 file_path="/app/config/mediamtx.xml"
 link_path="/app/mediamtx.yml"
-url="https://raw.githubusercontent.com/bluenviron/mediamtx/v0.23.5/mediamtx.yml"
+url="https://raw.githubusercontent.com/artificialbutter/MediaMTX-Unraid/latest/bin/mediamtx.yml"
 
 
 echo " __  __          _ _       __  __ _______  __"
