@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file_path="/app/config/mediamtx.xml"
+file_path="/app/config/mediamtx.yml"
 link_path="/app/mediamtx.yml"
 url="https://raw.githubusercontent.com/artificialbutter/MediaMTX-Unraid/latest/bin/mediamtx.yml"
 
