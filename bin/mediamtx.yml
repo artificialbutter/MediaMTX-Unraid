@@ -53,13 +53,17 @@ pprof: no
 pprofAddress: 127.0.0.1:9999
 
 # Command to run when a client connects to the server.
-# Prepend ./ to run an executable in the current folder (example: "./ffmpeg")
 # This is terminated with SIGINT when a client disconnects from the server.
 # The following environment variables are available:
 # * RTSP_PORT: RTSP server port
+# * MTX_CONN_TYPE: connection type
+# * MTX_CONN_ID: connection ID
 runOnConnect:
 # Restart the command if it exits.
 runOnConnectRestart: no
+# Command to run when a client disconnects from the server.
+# Environment variables are the same of runOnConnect.
+runOnDisconnect:
 
 ###############################################
 # RTSP settings
@@ -235,6 +239,28 @@ srt: yes
 srtAddress: :8890
 
 ###############################################
+# Recording settings
+
+# Record streams to disk.
+record: no
+# Path of recording segments.
+# Extension is added automatically.
+# Available variables are %path (path name), %Y %m %d %H %M %S %f (time in strftime format)
+recordPath: ./recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+# Format of recorded segments.
+# Currently the only available format is fmp4 (fragmented MP4).
+recordFormat: fmp4
+# fMP4 files are concatenation of small MP4 files (parts), each with this duration.
+# When a system failure occurs, the last part gets lost.
+# Therefore, the part duration is equal to the RPO (recovery point objective).
+recordPartDuration: 100ms
+# Minimum duration of each segment.
+recordSegmentDuration: 1h
+# Delete segments after this timespan.
+# Set to 0 to disable automatic deletion.
+recordDeleteAfter: 24h
+
+###############################################
 # Path settings
 
 # These settings are path-dependent, and the map key is the name of the path.
@@ -280,6 +306,8 @@ paths:
     sourceOnDemandCloseAfter: 10s
     # Maximum number of readers. Zero means no limit.
     maxReaders: 0
+    # Record streams to disk (if global recording is enabled).
+    record: yes
 
     ###############################################
     # Authentication path settings
@@ -423,8 +451,7 @@ paths:
     # External commands path settings
 
     # Command to run when this path is initialized.
-    # This can be used to publish a stream and keep it always opened.
-    # Prepend ./ to run an executable in the current folder (example: "./ffmpeg")
+    # This can be used to publish a stream when the server is launched.
     # This is terminated with SIGINT when the program closes.
     # The following environment variables are available:
     # * MTX_PATH: path name
@@ -435,9 +462,8 @@ paths:
     # Restart the command if it exits.
     runOnInitRestart: no
 
-    # Command to run when this path is requested.
+    # Command to run when this path is requested by a reader.
     # This can be used to publish a stream on demand.
-    # Prepend ./ to run an executable in the current folder (example: "./ffmpeg")
     # This is terminated with SIGINT when the path is not requested anymore.
     # The following environment variables are available:
     # * MTX_PATH: path name
@@ -454,27 +480,35 @@ paths:
     # readers connected and this amount of time has passed.
     runOnDemandCloseAfter: 10s
 
-    # Command to run when the stream is ready to be read, whether it is
+    # Command to run when the stream is ready to be read, whenever it is
     # published by a client or pulled from a server / camera.
-    # Prepend ./ to run an executable in the current folder (example: "./ffmpeg")
     # This is terminated with SIGINT when the stream is not ready anymore.
     # The following environment variables are available:
     # * MTX_PATH: path name
+    # * MTX_SOURCE_TYPE: source type
+    # * MTX_SOURCE_ID: source ID
     # * RTSP_PORT: RTSP server port
     # * G1, G2, ...: regular expression groups, if path name is
     #   a regular expression.
     runOnReady:
     # Restart the command if it exits.
     runOnReadyRestart: no
+    # Command to run when the stream is not available anymore.
+    # Environment variables are the same of runOnReady.
+    runOnNotReady:
 
-    # Command to run when a clients starts reading.
-    # Prepend ./ to run an executable in the current folder (example: "./ffmpeg")
+    # Command to run when a client starts reading.
     # This is terminated with SIGINT when a client stops reading.
     # The following environment variables are available:
     # * MTX_PATH: path name
+    # * MTX_READER_TYPE: reader type
+    # * MTX_READER_ID: reader ID
     # * RTSP_PORT: RTSP server port
     # * G1, G2, ...: regular expression groups, if path name is
     #   a regular expression.
     runOnRead:
     # Restart the command if it exits.
     runOnReadRestart: no
+    # Command to run when a client stops reading.
+    # Environment variables are the same of runOnRead.
+    runOnUnread:
