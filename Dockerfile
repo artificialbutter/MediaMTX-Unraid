@@ -5,6 +5,7 @@ RUN apk --no-cache add curl
 WORKDIR /app
 RUN mkdir /app/config/
 
+ADD ./bin/LICENSE /app
 ADD ./bin/mediamtx /app
 ADD ./start.sh /app
 

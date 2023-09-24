@@ -257,7 +257,7 @@ recordPartDuration: 100ms
 # Minimum duration of each segment.
 recordSegmentDuration: 1h
 # Delete segments after this timespan.
-# Set to 0 to disable automatic deletion.
+# Set to 0s to disable automatic deletion.
 recordDeleteAfter: 24h
 
 ###############################################
@@ -338,6 +338,10 @@ paths:
     # if no one is publishing, redirect readers to this path.
     # It can be can be a relative path  (i.e. /otherstream) or an absolute RTSP URL.
     fallback:
+    # SRT encryption passphrase required to publish on this path
+    srtPublishPassphrase:
+    # SRT encryption passphrase require to read from this path
+    srtReadPassphrase:
 
     ###############################################
     # RTSP path settings (when source is a RTSP or a RTSPS URL)
@@ -448,7 +452,7 @@ paths:
     rpiCameraTextOverlay: '%Y-%m-%d %H:%M:%S - MediaMTX'
 
     ###############################################
-    # External commands path settings
+    # Hooks path settings
 
     # Command to run when this path is initialized.
     # This can be used to publish a stream when the server is launched.
