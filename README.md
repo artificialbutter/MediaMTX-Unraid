@@ -10,7 +10,4 @@ I'm new to docker, so there's probably a way to do this with the official image 
 - `ffmpeg` - MediaMTX, with ffmpeg
 
 ## Updating
-In the event that I stop maintaining this image, anyone can update it by following these steps:
-1. Download the latest version of MediaMTX for linux (amd64) from [here](https://github.com/bluenviron/mediamtx/releases) and extract it.
-2. Copy the `mediamtx` binary and config file to the `bin` folder in this repo.
-3. GitHub actions should automatically build the new image and push it to ghcr.
+This repository & docker image will be automatically updated every Sunday, using github actions.

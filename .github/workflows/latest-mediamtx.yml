@@ -1,0 +1,49 @@
+name: Download Latest MediaMTX Release
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Run every Sunday at midnight
+  workflow_dispatch:
+
+jobs:
+  check-and-download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          ref: ${{ github.head_ref }}
+
+      - name: Get Latest Release
+        id: get_release
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const response = await github.repos.getLatestRelease({
+              owner: 'bluenviron',
+              repo: 'mediamtx'
+            });
+            console.log(response.data.tag_name);
+            console.log(response.data.tarball_url);
+            console.log(response.data.assets[2].browser_download_url);
+            return response.data.assets[2].browser_download_url;
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+
+      - name: Download Latest Release
+        run: |
+          curl -L ${{ steps.get_release.outputs.result }} -o latest_release.tar.gz
+
+      - name: Move Files
+        run: |
+          rm -rf bin/{*,.[!.]*} && mv latest_release.tar.gz bin/
+          
+      - name: Extract Latest Release
+        run: |
+          cd bin && tar -xzf latest_release.tar.gz && rm latest_release.tar.gz
+        
+      - name: Commit Changes  
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update MediaMTX - Automated
