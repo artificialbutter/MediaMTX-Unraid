@@ -265,6 +265,8 @@ pathDefaults:
   # * wheps://existing-url -> the stream is pulled from another WebRTC server / camera with HTTPS
   # * redirect -> the stream is provided by another path or server
   # * rpiCamera -> the stream is provided by a Raspberry Pi Camera
+  # If path name is a regular expression, $G1, G2, etc will be replaced
+  # with regular expression groups.
   source: publisher
   # If the source is a URL, and the source certificate is self-signed
   # or invalid, you can provide the fingerprint of the certificate in order to
@@ -296,7 +298,7 @@ pathDefaults:
   record: no
   # Path of recording segments.
   # Extension is added automatically.
-  # Available variables are %path (path name), %Y %m %d %H %M %S %f (time in strftime format)
+  # Available variables are %path (path name), %Y %m %d %H %M %S %f %s (time in strftime format)
   recordPath: ./recordings/%path/%Y-%m-%d_%H-%M-%S-%f
   # Format of recorded segments.
   # Available formats are "fmp4" (fragmented MP4) and "mpegts" (MPEG-TS).
