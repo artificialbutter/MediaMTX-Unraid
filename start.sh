@@ -31,5 +31,18 @@ fi
 echo "Starting..."
 echo "=============================="
 
+
+
+echo "██╗    ██╗ █████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗                           
+      ██║    ██║██╔══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝                           
+      ██║ █╗ ██║███████║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗                          
+      ██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║                          
+      ╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝                          
+       ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝                           
+                                                                                    
+      This image is now deprecated! The official MediaMTX images now support environment variables allowing easy use with Unraid. 
+      Please use the official images instead.
+      bluenviron/mediamtx:latest"    
+
 chmod +x mediamtx
 ./mediamtx
