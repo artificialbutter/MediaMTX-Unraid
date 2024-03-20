@@ -40,7 +40,7 @@ echo "██╗    ██╗ █████╗ ██████╗ ███�
       ╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝                          
        ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝                           
                                                                                     
-      This image is now deprecated! The official MediaMTX images now support environment variables allowing easy use with Unraid. 
+      This image is now deprecated and NO LONGER UPDATED! The official MediaMTX images now support environment variables allowing easy use with Unraid. 
       Please use the official images instead.
       bluenviron/mediamtx:latest"    
 
